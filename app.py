@@ -15,23 +15,23 @@ def load_classification_models(model_type):
 
     if model_type == "ResNet50 (Solo)":
         models_dict = {
-            "carrot": tf.keras.models.load_model("models/resnet/carrot_resnet50_model.h5"),
-            "cucumber": tf.keras.models.load_model("models/resnet/cucumber_resnet50_model.h5"),
-            "tomato": tf.keras.models.load_model("models/resnet/tomato_resnet50_model.h5"),
+            "carrot": tf.keras.models.load_model("resnet/carrot_resnet50_model.h5"),
+            "cucumber": tf.keras.models.load_model("resnet/cucumber_resnet50_model.h5"),
+            "tomato": tf.keras.models.load_model("resnet/tomato_resnet50_model.h5"),
         }
 
     elif model_type == "MobileNetV3 (Solo)":
         models_dict = {
-            "carrot": tf.keras.models.load_model("models/mobilenet/carrot_mobilenetv2.h5"),
-            "cucumber": tf.keras.models.load_model("models/mobilenet/cucumber_mobilenetv2.h5"),
-            "tomato": tf.keras.models.load_model("models/mobilenet/tomato_mobilenetv2.h5"),
+            "carrot": tf.keras.models.load_model("mobilenet/carrot_mobilenetv2.h5"),
+            "cucumber": tf.keras.models.load_model("mobilenet/cucumber_mobilenetv2.h5"),
+            "tomato": tf.keras.models.load_model("mobilenet/tomato_mobilenetv2.h5"),
         }
 
     elif model_type == "EfficientNetV2 (Solo)":
         models_dict = {
-            "carrot": tf.keras.models.load_model("models/efficientnet/carrot_efficientnetv2.h5"),
-            "cucumber": tf.keras.models.load_model("models/efficientnet/cucumber_efficientnetv2.h5"),
-            "tomato": tf.keras.models.load_model("models/efficientnet/tomato_efficientnetv2.h5"),
+            "carrot": tf.keras.models.load_model("efficientnet/carrot_efficientnetv2.h5"),
+            "cucumber": tf.keras.models.load_model("efficientnet/cucumber_efficientnetv2.h5"),
+            "tomato": tf.keras.models.load_model("efficientnet/tomato_efficientnetv2.h5"),
         }
 
     return models_dict
@@ -68,7 +68,7 @@ if uploaded_image is not None:
 
     # ================= YOLO =================
     if model_type == "YOLO (Solo)":
-        model = YOLO("detect/train/best.pt")
+        model = YOLO("best.pt")
 
         results = model.predict(image_np, conf=0.4)
         result_image = results[0].plot()

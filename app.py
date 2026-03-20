@@ -9,7 +9,7 @@ import numpy as np
 
 # ================= FUNCTION =================
 
-""" @st.cache_resource
+@st.cache_resource
 def load_classification_models(model_type):
     models_dict = {}
 
@@ -40,7 +40,7 @@ def preprocess_image(image):
     image = image.resize((224, 224))
     image = np.array(image) / 255.0
     image = np.expand_dims(image, axis=0)
-    return image """
+    return image 
 
 # ================= Streamlit UI =================
 

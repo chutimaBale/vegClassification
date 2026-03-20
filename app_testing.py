@@ -1,45 +1,40 @@
 import streamlit as st
-import cv2
-import numpy as np
 from ultralytics import YOLO
+from PIL import Image
+import numpy as np
 
-# Set the title of the Streamlit app
-st.title("Basic Object Detection App")
+st.title("YOLO Detection App :)")
 
-# Create a file uploader in the sidebar
-uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-"""
-if uploaded_file is not None:
-    # Read the image
-    image_bytes = uploaded_file.getvalue()
-    image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), cv2.IMREAD_COLOR)
-    
-    # Display the original image in the main area
-    st.subheader("Original Image")
-    st.image(image, channels="BGR", caption="Original Image", use_column_width=True)
+# Load YOLO model
+model = YOLO("best.pt")
 
-    # Load the pre-trained YOLO model (using st.cache_resource to load once)
-    @st.cache_resource
-    def load_model():
-        # You can use any model Ultralytics supports, e.g., 'yolov8n.pt'
-        model = YOLO("best.pt")
-        return model
-    
-    model = load_model()
+# Upload image
+uploaded_image = st.file_uploader("Upload an image (jpg, png)", type=["jpg", "jpeg", "png"])
 
-    # Perform object detection when a button is clicked
-    if st.sidebar.button("Detect Objects"):
-        st.subheader("Detected Objects")
-        
-        # Perform detection
-        results = model(image)
-        
-        # Render the results on the image
-        # The 'plot()' method draws bounding boxes and labels
-        detected_image = results[0].plot()
+if uploaded_image is not None:
+  # Show original image
+  st.image(uploaded_image , caption="Uploaded Image", use_container_width=True)
 
-        # Display the image with detections
-        st.image(detected_image, channels="BGR", caption="Image with Detections", use_column_width=True)
-else:
-    st.sidebar.info("Upload an image to get started.")
-"""
+  # Read image and convert to numpy array
+  image = Image.open(uploaded_image)
+  image_np = np.array(image)
+
+  # Run YOLO inference
+  st.info("Running YOLO detection...")
+  results = model.predict(image_np , conf=0.4)
+
+  # Draw results on image
+  result_image = results[0].plot()
+  st.image(result_image , caption="YOLO Detection Result", use_container_width=True)
+  st.success("Detection completed!")
+
+  # Extract detection results
+  boxes = results[0].boxes
+  class_ids = boxes.cls.cpu().numpy().astype(int)
+  class_names = [model.names[i] for i in class_ids]
+
+  # Count 
+  carrot_Healthy_count = class_names.count("carrot_Healthy")
+  st.write(f"Number of vegetable detected: **{carrot_Healthy_count}**")
+  carrot_Rotten_count = class_names.count("carrot_Rotten")
+  st.write(f"Number of people without helmet detected: **{carrot_Rotten_count}**")

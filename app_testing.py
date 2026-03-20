@@ -8,7 +8,7 @@ st.title("Basic Object Detection App")
 
 # Create a file uploader in the sidebar
 uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-
+"""
 if uploaded_file is not None:
     # Read the image
     image_bytes = uploaded_file.getvalue()
@@ -42,4 +42,4 @@ if uploaded_file is not None:
         st.image(detected_image, channels="BGR", caption="Image with Detections", use_column_width=True)
 else:
     st.sidebar.info("Upload an image to get started.")
-
+"""

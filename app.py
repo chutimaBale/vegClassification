@@ -22,16 +22,16 @@ def load_classification_models(model_type):
 
     elif model_type == "MobileNetV3 (Solo)":
         models_dict = {
-            "carrot": tf.keras.models.load_model("mobilenet/carrot_mobilenetv2.h5"),
-            "cucumber": tf.keras.models.load_model("mobilenet/cucumber_mobilenetv2.h5"),
-            "tomato": tf.keras.models.load_model("mobilenet/tomato_mobilenetv2.h5"),
+            "carrot": tf.keras.models.load_model("mobilenet/carrot_mobilenetv2_model.h5"),
+            "cucumber": tf.keras.models.load_model("mobilenet/cucumber_mobilenetv2_model.h5"),
+            "tomato": tf.keras.models.load_model("mobilenet/tomato_mobilenetv2_model.h5"),
         }
 
     elif model_type == "EfficientNetV2 (Solo)":
         models_dict = {
-            "carrot": tf.keras.models.load_model("efficientnet/carrot_efficientnetv2.h5"),
-            "cucumber": tf.keras.models.load_model("efficientnet/cucumber_efficientnetv2.h5"),
-            "tomato": tf.keras.models.load_model("efficientnet/tomato_efficientnetv2.h5"),
+            "carrot": tf.keras.models.load_model("efficientnet/carrot_efficientnetv2_model.h5"),
+            "cucumber": tf.keras.models.load_model("efficientnet/cucumber_efficientnetv2_model.h5"),
+            "tomato": tf.keras.models.load_model("efficientnet/tomato_efficientnetv2_model.h5"),
         }
 
     return models_dict

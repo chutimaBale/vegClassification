@@ -9,7 +9,7 @@ from PIL import Image
 IMG_SIZE = 224
 
 # 🔥 เปลี่ยน path โมเดลตรงนี้
-MODEL_PATH = "model/vegClass_EfficientNetV2.h5"
+MODEL_PATH = "best.pt"
 
 # 🔥 เปลี่ยนชื่อ class ให้ตรง dataset
 CLASS_NAMES = ['carrot_Healthy', 'carrot_Rotten', 'tomato_Healthy', 'tomato_Rotten', 'cucumber_Healthy', 'cucumber_Rotten']

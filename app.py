@@ -42,5 +42,5 @@ if uploaded_image is not None:
 
     st.info("Running Classification...")
 
-        veg_count = class_names.count("Vegetable")
+        veg_count = class_names.count("Carrot_Healthy")
         st.write(f"Vegetable detected: **{veg_count}**")

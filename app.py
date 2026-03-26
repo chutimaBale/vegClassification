@@ -26,7 +26,7 @@ model_type = st.sidebar.selectbox(
     "Choose Model Configuration",
     ("YOLO (Solo)", "MobileNetV2 (Solo)","EfficientNetV2 (Solo)","ResNet50 (Solo)",)
 )
-'''
+
 
 # Load YOLO model
 model = YOLO("best.pt")
@@ -44,3 +44,4 @@ if uploaded_image is not None:
 
         veg_count = class_names.count("carrot-healthy")
         st.write(f"Vegetable detected: **{veg_count}**")
+'''
